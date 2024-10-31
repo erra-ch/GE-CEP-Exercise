@@ -1,6 +1,7 @@
 package exercise;
 
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -14,7 +15,7 @@ public class MeterDataGenerator {
         List<MeterDataTuple> readings = new ArrayList<>();
 
         for (int hour = 0; hour < hours; hour++) {
-            LocalDateTime timestamp = startTimestamp.plusHours(hour);
+            long timestamp = startTimestamp.plusHours(hour).toInstant(ZoneOffset.UTC).toEpochMilli();
 
             for (int household = 0; household < HOUSEHOLDS; household++) {
                 Double consumption = random.nextDouble(1.0, 10.0);

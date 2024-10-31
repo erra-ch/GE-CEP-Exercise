@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -28,7 +29,7 @@ class MeterDataGeneratorTest {
     @Test
     void testHours() {
         for (int hour = 0; hour < HOURS; hour++) {
-            LocalDateTime expectedTimestamp = startTimestamp.plusHours(hour);
+            Long expectedTimestamp = startTimestamp.plusHours(hour).toInstant(ZoneOffset.UTC).toEpochMilli();
             long readingCount = meterReadings.stream()
                 .filter(reading -> reading.getTimestamp().equals(expectedTimestamp))
                 .count();
