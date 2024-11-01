@@ -1,6 +1,24 @@
-- Write a data generator in Java that creates hourly readings for 10 households. The generated data should be timestamp sorted.
-- Write a Flink query (in Java) that reads this data and that calculates the average over tumbling windows of 6 hours in event time.
-- Use Flink CEP to find sequences with at least 3 consecutive growing averages (on a per-household basis)
-- The parallelism degree of the query should be an input parameter.
+## Setup and run
 
-Provide a repository with the code and a document describing the code. The document should also describe which parts of the exercise were most challenging.
+### Build with Maven
+In flink-exercise
+```
+mvn clean package
+```
+
+### Prepare Flink
+
+In `flink-1.20.0/conf/config.yaml`
+Edit numberOfTaskSlots to allow for increased parallelism.
+
+### Start Flink
+```
+flink-1.20.0/bin/start-cluster.sh
+```
+
+### Run application
+```
+flink-1.20.0/bin/flink run flink-exercise/target/flink-exercise-1.0-SNAPSHOT.jar --parallelism 4 --out "$PWD"/output
+```
+This will submit the compiled application to the local cluster with parallelism 4. The result should end up in the output directory.
+
