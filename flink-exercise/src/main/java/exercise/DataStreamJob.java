@@ -91,7 +91,7 @@ public class DataStreamJob {
 			}
 		});
 
-		String outputPath = "output/";
+		String outputPath = params.get("out","output/");
 		FileSink<String> sink = FileSink
 				.forRowFormat(new Path(outputPath), new SimpleStringEncoder<String>("UTF-8"))
 				.withRollingPolicy(OnCheckpointRollingPolicy.build())
