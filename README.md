@@ -7,6 +7,7 @@ mvn clean package
 ```
 
 ### Prepare Flink
+Assuming flink-1.20.0 binary has been downloaded and extracted into the repo.
 
 In `flink-1.20.0/conf/config.yaml`
 Edit numberOfTaskSlots to allow for increased parallelism.
