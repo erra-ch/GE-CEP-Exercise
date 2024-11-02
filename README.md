@@ -23,3 +23,7 @@ flink-1.20.0/bin/flink run flink-exercise/target/flink-exercise-1.0-SNAPSHOT.jar
 ```
 This will submit the compiled application to the local cluster with parallelism 4. The result should end up in the output directory.
 
+### Use Flink UI (and Dockerized environment)
+Compile as before.
+
+Specify Parallelism in separate input field instead. Use same syntax to specify --out in Program Arguments.

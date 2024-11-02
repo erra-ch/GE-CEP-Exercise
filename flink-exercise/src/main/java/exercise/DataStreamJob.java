@@ -49,7 +49,10 @@ public class DataStreamJob {
 		final ParameterTool params = ParameterTool.fromArgs(args);
 
 		final StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
-		env.setParallelism(params.getInt("parallelism", 1));
+		int parallelism = params.getInt("parallelism", 0);
+		if (parallelism > 0) {
+			env.setParallelism(parallelism);
+		}
 
 		LocalDateTime startTimestamp = LocalDateTime.of(2024, 10, 1, 0, 0);
 		DataStreamSource<MeterDataTuple> meterDataStreamSource = env.fromData(MeterDataGenerator.generate(startTimestamp, 96));

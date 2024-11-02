@@ -18,7 +18,7 @@ public class MeterDataGenerator {
             long timestamp = startTimestamp.plusHours(hour).toInstant(ZoneOffset.UTC).toEpochMilli();
 
             for (int household = 0; household < HOUSEHOLDS; household++) {
-                Double consumption = random.nextDouble(1.0, 10.0);
+                Double consumption = 1.0 + (10.0 - 1.0) * random.nextDouble();
                 MeterDataTuple reading = new MeterDataTuple("Household-" + household, timestamp, consumption);
 
                 readings.add(reading);
